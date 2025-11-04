@@ -1,11 +1,14 @@
 import { useRef, useEffect } from 'react';
 import Spline from '@splinetool/react-spline';
-import { User } from 'lucide-react';
+import { User, Keyboard } from 'lucide-react';
+import { motion, useAnimationControls } from 'framer-motion';
 
 export default function Hero3D() {
   const titleRef = useRef(null);
   const containerRef = useRef(null);
+  const keyboardControls = useAnimationControls();
 
+  // Cursor tilt on headline only
   useEffect(() => {
     const handleMove = (e) => {
       const rect = containerRef.current?.getBoundingClientRect();
@@ -28,10 +31,24 @@ export default function Hero3D() {
     return () => el?.removeEventListener('mousemove', handleMove);
   }, []);
 
+  // Keyboard image animation: bounce/tilt on any key press
+  useEffect(() => {
+    const onKeyDown = () => {
+      keyboardControls.start({
+        rotate: [0, -10, 8, -6, 0],
+        scale: [1, 1.1, 1],
+        transition: { duration: 0.6, ease: 'easeOut' },
+      });
+    };
+
+    window.addEventListener('keydown', onKeyDown);
+    return () => window.removeEventListener('keydown', onKeyDown);
+  }, [keyboardControls]);
+
   return (
     <section id="home" ref={containerRef} className="relative h-[92vh] w-full overflow-hidden bg-black text-white">
       <div className="absolute inset-0">
-        <Spline scene="https://prod.spline.design/41MGRk-UDPKO-l6W/scene.splinecode" style={{ width: '100%', height: '100%' }} />
+        <Spline scene="https://prod.spline.design/VJLoxp84lCdVfdZu/scene.splinecode" style={{ width: '100%', height: '100%' }} />
       </div>
 
       {/* Dark overlay so 3D blends with text; allow pointer to pass through */}
@@ -55,6 +72,22 @@ export default function Hero3D() {
             I create software for the web, apps, and AI tools with a strong focus on modern architecture and design.
           </p>
         </div>
+
+        {/* Keyboard visual that reacts to key presses */}
+        <motion.div
+          animate={keyboardControls}
+          initial={{ rotate: 0, scale: 1 }}
+          className="pointer-events-none absolute right-6 top-24 sm:right-10 sm:top-28 md:right-14 md:top-32"
+        >
+          <motion.div
+            animate={{ y: [0, -8, 0] }}
+            transition={{ duration: 3, repeat: Infinity, repeatType: 'mirror', ease: 'easeInOut' }}
+            className="rounded-2xl border border-white/10 bg-white/5 p-3 backdrop-blur-xl shadow-[0_20px_80px_-20px_rgba(16,185,129,0.25)]"
+          >
+            <Keyboard className="h-10 w-10 text-emerald-300 drop-shadow-[0_0_24px_rgba(16,185,129,0.45)]" />
+          </motion.div>
+          <p className="mt-2 text-xs text-slate-300/80 text-center">press any key</p>
+        </motion.div>
       </div>
     </section>
   );
