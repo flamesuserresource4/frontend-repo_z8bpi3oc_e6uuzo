@@ -1,8 +1,9 @@
 import React, { useEffect } from 'react';
-import Navbar from './components/Navbar';
-import Hero3D from './components/Hero3D';
-import ExperienceTimeline from './components/ExperienceTimeline';
-import SkillsAndContact from './components/SkillsAndContact';
+import Navbar from './components/Navbar.jsx';
+import Hero3D from './components/Hero3D.jsx';
+import ExperienceTimeline from './components/ExperienceTimeline.jsx';
+import SkillsSection from './components/SkillsSection.jsx';
+import ContactSection from './components/ContactSection.jsx';
 
 export default function App() {
   useEffect(() => {
@@ -10,12 +11,15 @@ export default function App() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-[#0b0f14] text-white">
+    <div className="min-h-screen bg-black text-white">
       <Navbar />
-      <Hero3D />
-      <ExperienceTimeline />
-      <SkillsAndContact />
-      <footer className="mx-auto max-w-6xl px-6 py-10 text-center text-sm text-white/60">
+      <main id="home">
+        <Hero3D />
+        <ExperienceTimeline />
+        <SkillsSection />
+        <ContactSection />
+      </main>
+      <footer className="mx-auto max-w-6xl px-6 py-10 text-center text-white/60">
         © 2025 Vishwajeet Kumar
       </footer>
     </div>
