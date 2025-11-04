@@ -1,40 +1,44 @@
-import React from 'react';
-import { Mail, Github, Linkedin } from 'lucide-react';
-
 export default function ContactSection() {
   return (
-    <section id="contact" className="mx-auto max-w-6xl px-6 py-20 text-white">
-      <div className="rounded-3xl border border-white/10 bg-white/5 p-8 backdrop-blur">
-        <div className="max-w-3xl">
-          <h2 className="text-3xl font-semibold">Let’s build something great</h2>
-          <p className="mt-2 text-white/70">
-            I’m open to opportunities and collaborations. If you have a project in mind or just want to say hi, drop a message.
+    <section id="contact" className="relative py-20">
+      <div className="mx-auto max-w-6xl px-4">
+        <div className="rounded-2xl border border-white/10 bg-white/5 p-8 backdrop-blur">
+          <h2 className="text-2xl sm:text-3xl font-semibold tracking-tight">Get in touch</h2>
+          <p className="mt-2 max-w-2xl text-slate-300">
+            Have a project in mind or want to collaborate? Drop a message and let's build something great together.
           </p>
-        </div>
-
-        <div className="mt-6 flex flex-wrap gap-3">
-          <a
-            href="mailto:vishwajeet.7t@gmail.com"
-            className="inline-flex items-center gap-2 rounded-xl border border-white/15 bg-white/5 px-4 py-2 text-sm text-white/90 hover:bg-white/10"
+          <form
+            className="mt-6 grid grid-cols-1 gap-4 md:grid-cols-2"
+            onSubmit={(e) => {
+              e.preventDefault();
+              alert('Thanks! I will get back to you soon.');
+            }}
           >
-            <Mail size={16} /> Email
-          </a>
-          <a
-            href="https://github.com/kumarvishwajeettrivedi"
-            target="_blank"
-            rel="noreferrer"
-            className="inline-flex items-center gap-2 rounded-xl border border-white/15 bg-white/5 px-4 py-2 text-sm text-white/90 hover:bg-white/10"
-          >
-            <Github size={16} /> GitHub
-          </a>
-          <a
-            href="https://www.linkedin.com/in/vishwajeet-kumar-5b7530242"
-            target="_blank"
-            rel="noreferrer"
-            className="inline-flex items-center gap-2 rounded-xl border border-white/15 bg-white/5 px-4 py-2 text-sm text-white/90 hover:bg-white/10"
-          >
-            <Linkedin size={16} /> LinkedIn
-          </a>
+            <input
+              className="rounded-xl border border-white/10 bg-white/5 px-4 py-3 outline-none placeholder:text-slate-400 focus:ring-2 focus:ring-cyan-400/50"
+              placeholder="Your name"
+              required
+            />
+            <input
+              type="email"
+              className="rounded-xl border border-white/10 bg-white/5 px-4 py-3 outline-none placeholder:text-slate-400 focus:ring-2 focus:ring-cyan-400/50"
+              placeholder="Email address"
+              required
+            />
+            <textarea
+              className="md:col-span-2 min-h-[120px] rounded-xl border border-white/10 bg-white/5 px-4 py-3 outline-none placeholder:text-slate-400 focus:ring-2 focus:ring-cyan-400/50"
+              placeholder="Your message"
+              required
+            />
+            <div>
+              <button
+                type="submit"
+                className="rounded-full bg-white text-slate-900 px-5 py-2 text-sm font-medium shadow/50 shadow-white/10 hover:shadow-white/20 transition"
+              >
+                Send Message
+              </button>
+            </div>
+          </form>
         </div>
       </div>
     </section>

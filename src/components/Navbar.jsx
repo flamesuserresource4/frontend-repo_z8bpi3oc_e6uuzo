@@ -1,29 +1,30 @@
-import React, { useEffect, useState } from 'react';
+import { Menu, Github, Linkedin } from 'lucide-react';
 
 export default function Navbar() {
-  const [scrolled, setScrolled] = useState(false);
-
-  useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 10);
-    window.addEventListener('scroll', onScroll);
-    return () => window.removeEventListener('scroll', onScroll);
-  }, []);
-
   return (
-    <div className="pointer-events-none fixed inset-x-0 top-0 z-40 flex justify-center p-4">
-      <nav
-        className={`pointer-events-auto w-[94vw] max-w-6xl rounded-full border backdrop-blur transition-colors ${
-          scrolled ? 'border-white/15 bg-white/10' : 'border-white/10 bg-white/5'
-        }`}
-      >
-        <ul className="flex items-center justify-center gap-6 px-6 py-3 text-sm font-medium text-white/80">
-          <li><a href="#home" className="hover:text-white">Home</a></li>
-          <li><a href="#experience" className="hover:text-white">Experience</a></li>
-          <li><a href="#projects" className="hover:text-white">Projects</a></li>
-          <li><a href="#skills" className="hover:text-white">Skills</a></li>
-          <li><a href="#contact" className="hover:text-white">Contact</a></li>
-        </ul>
-      </nav>
-    </div>
+    <header className="sticky top-0 z-50 backdrop-blur supports-[backdrop-filter]:bg-slate-900/40 border-b border-white/10">
+      <div className="mx-auto max-w-6xl px-4 py-3 flex items-center justify-between">
+        <div className="flex items-center gap-2">
+          <div className="h-8 w-8 rounded-lg bg-gradient-to-br from-cyan-400/30 to-fuchsia-500/30 ring-1 ring-white/20" />
+          <span className="font-semibold tracking-tight">Vishwajeet Kumar</span>
+        </div>
+        <nav className="hidden md:flex items-center gap-6 text-sm text-slate-300">
+          <a href="#experience" className="hover:text-white transition">Experience</a>
+          <a href="#skills" className="hover:text-white transition">Skills</a>
+          <a href="#contact" className="hover:text-white transition">Contact</a>
+        </nav>
+        <div className="flex items-center gap-3">
+          <a href="#" aria-label="GitHub" className="p-2 rounded-md hover:bg-white/5 transition" title="GitHub">
+            <Github size={18} />
+          </a>
+          <a href="#" aria-label="LinkedIn" className="p-2 rounded-md hover:bg-white/5 transition" title="LinkedIn">
+            <Linkedin size={18} />
+          </a>
+          <button className="md:hidden p-2 rounded-md hover:bg-white/5 transition" aria-label="Menu">
+            <Menu size={18} />
+          </button>
+        </div>
+      </div>
+    </header>
   );
 }
