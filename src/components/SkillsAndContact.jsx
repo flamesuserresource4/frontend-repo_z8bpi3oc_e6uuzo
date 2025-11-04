@@ -17,22 +17,12 @@ export default function SkillsAndContact() {
   }, []);
 
   const skillGroups = [
-    {
-      title: 'Core',
-      items: ['HTML', 'CSS', 'JavaScript', 'TypeScript'],
-    },
-    {
-      title: 'Frontend',
-      items: ['React', 'Vite', 'Tailwind', 'Framer Motion'],
-    },
-    {
-      title: 'Backend & DB',
-      items: ['Node', 'FastAPI', 'MongoDB'],
-    },
-    {
-      title: 'Tools',
-      items: ['Git', 'Spline', 'Figma'],
-    },
+    { title: 'Languages', items: ['Python', 'TypeScript', 'JavaScript', 'Dart', 'C/C++', 'SQL'] },
+    { title: 'Backend', items: ['FastAPI', 'Express.js', 'Django', 'Node.js', 'Spring Boot', 'RESTful APIs', 'Redis', 'WebSockets'] },
+    { title: 'Frontend & Mobile', items: ['React.js', 'Next.js', 'Flutter', 'React Native', 'Tailwind CSS', 'Figma-to-UI'] },
+    { title: 'AI & LLMs', items: ['OpenAI API', 'LangChain', 'TensorFlow', 'PyTorch', 'Scikit-learn', 'Vector Databases', 'NLP', 'Prompt Engineering'] },
+    { title: 'DevOps & Cloud', items: ['Docker', 'Kubernetes', 'Jenkins', 'GitLab CI/CD', 'Nginx', 'AWS (EC2, S3, Lambda)', 'Firebase'] },
+    { title: 'Automation & Tools', items: ['n8n', 'Zapier', 'MQTT', 'Webhooks', 'CI/CD Pipelines', 'Monitoring', 'Git', 'Agile'] },
   ];
 
   return (
@@ -49,48 +39,60 @@ export default function SkillsAndContact() {
           }}
         />
 
-        <div className="relative z-10 grid gap-8 md:grid-cols-3">
-          <div className="md:col-span-2">
+        <div className="relative z-10 grid gap-10 lg:grid-cols-3">
+          <div className="lg:col-span-2">
             <h2 className="text-3xl font-semibold text-white">Skills</h2>
-            <p className="mt-2 text-white/70">A concise overview of tools and technologies.</p>
-            <div className="mt-6 flex flex-wrap gap-3">
+            <p className="mt-2 text-white/70">Compact, elegant badges with a subtle glow on hover.</p>
+
+            {/* Pills grid */}
+            <div className="mt-6 grid grid-cols-1 gap-3 md:grid-cols-2">
               {skillGroups.map((group) => (
-                <div
-                  key={group.title}
-                  className="rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm text-white/85 backdrop-blur"
-                >
-                  <span className="font-medium text-white">{group.title}:</span>{' '}
-                  <span className="text-white/80">{group.items.join(', ')}</span>
+                <div key={group.title} className="rounded-2xl border border-white/10 bg-white/5 p-4 backdrop-blur">
+                  <div className="mb-2 text-sm font-semibold text-white/90">{group.title}</div>
+                  <div className="flex flex-wrap gap-2">
+                    {group.items.map((item) => (
+                      <span
+                        key={item}
+                        className="rounded-full border border-white/10 bg-[#0f1620] px-3 py-1 text-xs text-white/85 shadow-sm transition hover:bg-[#121c28]"
+                      >
+                        {item}
+                      </span>
+                    ))}
+                  </div>
                 </div>
               ))}
             </div>
           </div>
 
+          {/* Contact */}
           <div id="contact" className="rounded-2xl border border-white/10 bg-white/5 p-6 backdrop-blur">
             <h3 className="text-lg font-semibold text-white">Contact</h3>
-            <p className="mt-1 text-sm text-white/70">Let’s build something great together.</p>
-            <div className="mt-4 flex gap-3">
+            <p className="mt-1 text-sm text-white/70">Clean and minimal with quick links.</p>
+            <div className="mt-4 grid gap-3">
               <a
-                href="mailto:vishwajeet@example.com"
-                className="flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-3 py-2 text-xs text-white/85 hover:bg-white/10"
+                href="mailto:vishwajeet.7t@gmail.com"
+                className="flex items-center justify-between gap-2 rounded-xl border border-white/15 bg-[#0f1620] px-3 py-3 text-sm text-white/85 hover:bg-[#121c28]"
               >
-                <Mail size={16} /> Email
+                <span className="flex items-center gap-2"><Mail size={16} /> Email</span>
+                <span className="text-white/60">vishwajeet.7t@gmail.com</span>
               </a>
               <a
-                href="https://github.com/"
+                href="https://github.com/kumarvishwajeettrivedi"
                 target="_blank"
                 rel="noreferrer"
-                className="flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-3 py-2 text-xs text-white/85 hover:bg-white/10"
+                className="flex items-center justify-between gap-2 rounded-xl border border-white/15 bg-[#0f1620] px-3 py-3 text-sm text-white/85 hover:bg-[#121c28]"
               >
-                <Github size={16} /> GitHub
+                <span className="flex items-center gap-2"><Github size={16} /> GitHub</span>
+                <span className="text-white/60">@kumarvishwajeettrivedi</span>
               </a>
               <a
-                href="https://www.linkedin.com/"
+                href="https://www.linkedin.com/in/vishwajeet-kumar-5b7530242"
                 target="_blank"
                 rel="noreferrer"
-                className="flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-3 py-2 text-xs text-white/85 hover:bg-white/10"
+                className="flex items-center justify-between gap-2 rounded-xl border border-white/15 bg-[#0f1620] px-3 py-3 text-sm text-white/85 hover:bg-[#121c28]"
               >
-                <Linkedin size={16} /> LinkedIn
+                <span className="flex items-center gap-2"><Linkedin size={16} /> LinkedIn</span>
+                <span className="text-white/60">/in/vishwajeet-kumar-5b7530242</span>
               </a>
             </div>
           </div>

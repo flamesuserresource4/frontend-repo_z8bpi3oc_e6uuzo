@@ -1,6 +1,5 @@
 import React from 'react';
 import Spline from '@splinetool/react-spline';
-import { motion } from 'framer-motion';
 
 export default function Hero3D() {
   return (
@@ -22,42 +21,13 @@ export default function Hero3D() {
         </div>
 
         <h1 className="text-4xl sm:text-5xl md:text-6xl font-semibold tracking-tight text-white">
-          Building interactive experiences
+          I am a Software developer
         </h1>
 
-        <p className="mt-4 max-w-2xl text-base sm:text-lg text-white/80">
-          I am a Software develoepr , I create software for the web, apps, and AI tools with a strong focus on modern architecture and design.
+        <p className="mt-4 max-w-3xl text-base sm:text-lg text-white/80">
+          I create software for the web, apps, and AI tools with a strong focus on modern architecture and design.
         </p>
-
-        {/* Keyboard animation (playful, subtle) */}
-        <div aria-hidden className="mt-8">
-          <KeyboardRow />
-        </div>
       </div>
     </section>
-  );
-}
-
-function Key({ label, delay = 0 }) {
-  return (
-    <motion.div
-      className="rounded-md border border-white/10 bg-white/5 px-2 py-1 text-xs text-white/80 shadow-md backdrop-blur-md"
-      initial={{ y: 0, opacity: 0.9 }}
-      animate={{ y: [0, -4, 0], opacity: [0.9, 1, 0.9] }}
-      transition={{ repeat: Infinity, duration: 1.8, delay }}
-    >
-      {label}
-    </motion.div>
-  );
-}
-
-function KeyboardRow() {
-  const keys = ['Q', 'W', 'E', 'R', 'T', 'Y'];
-  return (
-    <div className="flex items-center justify-center gap-2">
-      {keys.map((k, i) => (
-        <Key key={k} label={k} delay={i * 0.12} />
-      ))}
-    </div>
   );
 }

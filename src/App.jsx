@@ -2,7 +2,6 @@ import React, { useEffect } from 'react';
 import Navbar from './components/Navbar';
 import Hero3D from './components/Hero3D';
 import ExperienceTimeline from './components/ExperienceTimeline';
-import ProjectsGrid from './components/ProjectsGrid';
 import SkillsAndContact from './components/SkillsAndContact';
 
 export default function App() {
@@ -15,7 +14,6 @@ export default function App() {
       <Navbar />
       <Hero3D />
       <ExperienceTimeline />
-      <ProjectsGrid />
       <SkillsAndContact />
       <footer className="mx-auto max-w-6xl px-6 py-10 text-center text-sm text-white/60">
         © 2025 Vishwajeet Kumar
