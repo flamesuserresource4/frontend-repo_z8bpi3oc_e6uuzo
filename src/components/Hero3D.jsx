@@ -1,29 +1,63 @@
+import React from 'react';
 import Spline from '@splinetool/react-spline';
+import { motion } from 'framer-motion';
 
 export default function Hero3D() {
   return (
-    <section id="home" className="relative h-[92vh] w-full overflow-hidden bg-black text-white">
+    <section id="home" className="relative min-h-[92vh] w-full overflow-hidden bg-gradient-to-b from-[#0b0f14] via-[#0b0f14] to-[#0b0f14]">
+      {/* 3D Scene */}
       <div className="absolute inset-0">
-        <Spline scene="https://prod.spline.design/41MGRk-UDPKO-l6W/scene.splinecode" style={{ width: '100%', height: '100%' }} />
+        <Spline scene="https://prod.spline.design/VJLoxp84lCdVfdZu/scene.splinecode" style={{ width: '100%', height: '100%' }} />
       </div>
 
-      {/* Vignette overlay (does not block interactions) */}
-      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_40%,rgba(0,0,0,0.65)_100%)]" />
+      {/* Vignette and gradient overlays (do not block interaction) */}
+      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(60%_50%_at_50%_40%,rgba(16,185,129,0.20),rgba(0,0,0,0)_60%)]" />
+      <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-black/40 via-transparent to-black/60" />
 
-      <div className="relative mx-auto flex h-full max-w-7xl flex-col items-start justify-center gap-5 px-6">
-        {/* Glassmorphic capsule name */}
-        <div className="inline-flex items-center rounded-full border border-white/10 bg-white/10 px-4 py-1.5 text-sm font-medium text-white shadow-[0_10px_40px_-12px_rgba(16,185,129,0.25)] backdrop-blur-md">
+      {/* Content overlay */}
+      <div className="relative z-10 mx-auto flex min-h-[92vh] max-w-6xl flex-col items-center justify-center px-6 text-center">
+        {/* Name capsule */}
+        <div className="mb-4 rounded-full border border-white/10 bg-white/10 px-5 py-2 text-xs font-medium tracking-wide text-white/90 backdrop-blur-xl shadow-lg">
           Vishwajeet Kumar
         </div>
 
-        <div>
-          <h1 className="text-3xl sm:text-4xl md:text-5xl font-semibold tracking-tight text-white">I am a software developer</h1>
-          <p className="mt-3 max-w-3xl text-sm sm:text-base text-slate-300">
-            I create software for the web, apps, and AI tools with a strong focus on modern architecture and design.
-          </p>
+        <h1 className="text-4xl sm:text-5xl md:text-6xl font-semibold tracking-tight text-white">
+          Building interactive experiences
+        </h1>
+
+        <p className="mt-4 max-w-2xl text-base sm:text-lg text-white/80">
+          I am a Software develoepr , I create software for the web, apps, and AI tools with a strong focus on modern architecture and design.
+        </p>
+
+        {/* Keyboard animation (playful, subtle) */}
+        <div aria-hidden className="mt-8">
+          <KeyboardRow />
         </div>
-        {/* Intentionally removed any hero buttons (e.g., Get in touch) as requested */}
       </div>
     </section>
+  );
+}
+
+function Key({ label, delay = 0 }) {
+  return (
+    <motion.div
+      className="rounded-md border border-white/10 bg-white/5 px-2 py-1 text-xs text-white/80 shadow-md backdrop-blur-md"
+      initial={{ y: 0, opacity: 0.9 }}
+      animate={{ y: [0, -4, 0], opacity: [0.9, 1, 0.9] }}
+      transition={{ repeat: Infinity, duration: 1.8, delay }}
+    >
+      {label}
+    </motion.div>
+  );
+}
+
+function KeyboardRow() {
+  const keys = ['Q', 'W', 'E', 'R', 'T', 'Y'];
+  return (
+    <div className="flex items-center justify-center gap-2">
+      {keys.map((k, i) => (
+        <Key key={k} label={k} delay={i * 0.12} />
+      ))}
+    </div>
   );
 }

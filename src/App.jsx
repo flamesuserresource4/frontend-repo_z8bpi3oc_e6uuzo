@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import React, { useEffect } from 'react';
 import Navbar from './components/Navbar';
 import Hero3D from './components/Hero3D';
 import ExperienceTimeline from './components/ExperienceTimeline';
@@ -11,17 +11,14 @@ export default function App() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-black text-white">
+    <div className="min-h-screen bg-[#0b0f14] text-white">
       <Navbar />
       <Hero3D />
       <ExperienceTimeline />
       <ProjectsGrid />
       <SkillsAndContact />
-
-      <footer className="mt-14 border-t border-white/10 bg-black/80 py-10">
-        <div className="mx-auto flex max-w-6xl flex-col items-center gap-4 px-6 text-center">
-          <p className="text-sm text-slate-400">© 2025 Vishwajeet Kumar. All rights reserved.</p>
-        </div>
+      <footer className="mx-auto max-w-6xl px-6 py-10 text-center text-sm text-white/60">
+        © 2025 Vishwajeet Kumar
       </footer>
     </div>
   );

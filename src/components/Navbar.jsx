@@ -1,36 +1,41 @@
-import { useEffect, useRef } from 'react';
+import React, { useEffect, useState } from 'react';
 
 export default function Navbar() {
-  const ref = useRef(null);
+  const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
-    const el = ref.current;
-    if (!el) return;
-    const onScroll = () => {
-      const scrolled = window.scrollY > 10;
-      el.style.backdropFilter = scrolled ? 'blur(12px)' : 'blur(8px)';
-      el.style.background = scrolled
-        ? 'linear-gradient(to bottom, rgba(18,22,18,0.75), rgba(18,22,18,0.6))'
-        : 'linear-gradient(to bottom, rgba(22,28,22,0.45), rgba(22,28,22,0.35))';
-    };
+    const onScroll = () => setScrolled(window.scrollY > 8);
     onScroll();
     window.addEventListener('scroll', onScroll);
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
   return (
-    <div className="pointer-events-none fixed left-0 right-0 top-4 z-40 flex w-full justify-center">
-      <nav
-        ref={ref}
-        className="pointer-events-auto mx-auto flex w-[92%] max-w-6xl items-center justify-center gap-6 rounded-full border border-white/10 px-6 py-2 text-sm text-slate-100 shadow-2xl"
-        style={{ backdropFilter: 'blur(8px)', background: 'linear-gradient(to bottom, rgba(22,28,22,0.45), rgba(22,28,22,0.35))' }}
-      >
-        <a href="#home" className="transition hover:text-emerald-300">Home</a>
-        <a href="#experience" className="transition hover:text-emerald-300">Experience</a>
-        <a href="#projects" className="transition hover:text-emerald-300">Projects</a>
-        <a href="#skills" className="transition hover:text-emerald-300">Skills</a>
-        <a href="#contact" className="transition hover:text-emerald-300">Contact</a>
-      </nav>
+    <div className="fixed inset-x-0 top-0 z-40 pointer-events-none">
+      <div className="mx-auto mt-4 flex justify-center">
+        <div
+          className={[
+            'pointer-events-auto px-6 py-3 rounded-full transition-all duration-300',
+            'backdrop-blur-xl border border-white/10 shadow-lg',
+            scrolled ? 'bg-white/10' : 'bg-white/5',
+            // Slightly increased width per request
+            'w-[94vw] max-w-6xl',
+          ].join(' ')}
+        >
+          <nav className="flex items-center justify-center gap-6 text-sm text-white/85">
+            <a href="#home" className="hover:text-white transition-colors">Home</a>
+            <span className="opacity-30">•</span>
+            <a href="#experience" className="hover:text-white transition-colors">Experience</a>
+            <span className="opacity-30">•</span>
+            <a href="#projects" className="hover:text-white transition-colors">Projects</a>
+            <span className="opacity-30">•</span>
+            <a href="#skills" className="hover:text-white transition-colors">Skills</a>
+            <span className="opacity-30">•</span>
+            <a href="#contact" className="hover:text-white transition-colors">Contact</a>
+          </nav>
+        </div>
+      </div>
+      <div className="pointer-events-none absolute inset-x-0 top-0 h-20 bg-gradient-to-b from-black/50 to-transparent" />
     </div>
   );
 }
